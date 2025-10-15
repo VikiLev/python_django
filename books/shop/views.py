@@ -1,7 +1,8 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from .models import Book
 
-# Create your views here.
+
 def index(request):
-    return HttpResponse("hello from Shop app")
-    
+    books = Book.objects.all()
+    return render(request, 'books.html', {'books': books})
