@@ -16,14 +16,20 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from api.models import BookResource, CategoryResource  # без ".."
+from api.models import BookResource, CategoryResource
+from tastypie.api import Api
 
+api = Api(api_name='v1')
 book_resource = BookResource()
 category_resource = CategoryResource()
+api.register(category_resource, book_resource)
+
+#api/v1
+#api/v1/books
+#api/v1/categories
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('shop/', include('shop.urls')),
-    path('api/', include(book_resource.urls)),
-    path('api/', include(category_resource.urls)),
+    path('api/', include(api.urls)),
 ]
