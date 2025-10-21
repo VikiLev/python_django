@@ -22,7 +22,8 @@ from tastypie.api import Api
 api = Api(api_name='v1')
 book_resource = BookResource()
 category_resource = CategoryResource()
-api.register(category_resource, book_resource)
+api.register(category_resource)
+api.register(book_resource)
 
 #api/v1
 #api/v1/books
